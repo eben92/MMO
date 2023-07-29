@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bygyenm3dqn0y"]
+
+[ext_resource type="PackedScene" uid="uid://dipsnwo6xnx0" path="res://Player/player.tscn" id="1_3ee3l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbndw"]
+size = Vector3(23.2152, 1, 13.8316)
+
+[sub_resource type="BoxMesh" id="BoxMesh_21rq5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gtvxq"]
+sky_top_color = Color(0.521569, 0.937255, 0.996078, 1)
+sky_horizon_color = Color(0.752941, 0.882353, 0.960784, 1)
+sky_curve = 0.106066
+
+[sub_resource type="Sky" id="Sky_cq8iu"]
+sky_material = SubResource("ProceduralSkyMaterial_gtvxq")
+radiance_size = 2
+
+[sub_resource type="Environment" id="Environment_vb4t7"]
+background_mode = 2
+sky = SubResource("Sky_cq8iu")
+
+[node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52934, -0.20129, 0.0528889)
+
+[node name="player" parent="." instance=ExtResource("1_3ee3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51128, 3.93781, 0.785749)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(2.32399, 0, 0, 0, 1, 0, 0, 0, 2.32723, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242137, 0)
+shape = SubResource("BoxShape3D_kbndw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(23.8083, 0, 0, 0, 0.987071, 0, 0, 0, 14.1694, 0.0161438, -0.0538528, 0.20839)
+mesh = SubResource("BoxMesh_21rq5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vb4t7")
